@@ -15,7 +15,7 @@ const SideBar = ({
         <div className=" mt-5">
             {data.map((item) =>(
                 <div key={item.href} className="flex flex-col w-full my-5 ">
-                    <Link href={item.href} className="text-white font-medium" >{item.title}</Link>
+                    <Link href={item.href} className="text-white font-normal" >{item.title}</Link>
                     <Separator/>
                 </div>
             ))}

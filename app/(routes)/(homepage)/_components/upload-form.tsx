@@ -1,5 +1,6 @@
 import axios from 'axios';
 import { UploadCloud } from 'lucide-react';
+import { useRouter } from 'next/navigation';
 import { useState } from 'react';
 import toast from 'react-hot-toast';
 import { TypeAnimation } from 'react-type-animation';
@@ -8,12 +9,14 @@ import { TypeAnimation } from 'react-type-animation';
 const UploadForm = () => {
 
     const [isUploading, setIsUploading] = useState(false);
+    const router = useRouter();
 
     const upload = async(e: any) => {
 
         try {
             e.preventDefault();
             const files = e.target?.files;
+
             
             setIsUploading(true);
             if(files.length !=0){
@@ -21,14 +24,15 @@ const UploadForm = () => {
                 const res = await axios.postForm('/api/upload',{
                     file,
                 })
+                setIsUploading(false);
+                const newName = res.data.newName;
+                router.push('/'+newName)
             }
             
             toast.success("File Uploaded Successfully");
         } catch (error : any) {
            console.log("UPLOAD FORM",error.message);
            toast.error("Something went wrong"); 
-        } finally {
-            setIsUploading(false);
         }
     }
 

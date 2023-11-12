@@ -50,6 +50,11 @@ const Navbar = () => {
                 <Menu />
               </SheetTrigger>
               <SheetContent className="bg-gradient-to-t from-red-600 to-purple-800">
+                <SheetHeader>
+                  <SheetTitle className="text-white font-semibold">
+                    Menu
+                  </SheetTitle>
+                </SheetHeader>
                 <SideBar
                   data={sheetContent}
                 />

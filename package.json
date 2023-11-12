@@ -10,10 +10,12 @@
   },
   "dependencies": {
     "@aws-sdk/client-s3": "^3.445.0",
+    "@aws-sdk/client-transcribe": "^3.445.0",
     "@aws-sdk/credential-provider-ini": "^3.445.0",
     "@radix-ui/react-dialog": "^1.0.5",
     "@radix-ui/react-separator": "^1.0.3",
     "@radix-ui/react-slot": "^1.0.2",
+    "aws-crt": "^1.19.0",
     "axios": "^1.6.1",
     "class-variance-authority": "^0.7.0",
     "clsx": "^2.0.0",
