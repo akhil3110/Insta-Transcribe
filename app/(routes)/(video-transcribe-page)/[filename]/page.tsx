@@ -5,6 +5,7 @@ import {useEffect,useState} from 'react'
 import TranscriptionItem from './_components/transcription-item';
 import { Button } from '@/components/ui/button';
 import { Rocket, RocketIcon } from 'lucide-react';
+import ResultColumn from './_components/result-column';
 
 const FilePage = (
     {params}: {params: {filename: string}}
@@ -72,6 +73,13 @@ const FilePage = (
             </div>
         )
     }
+
+    const updateTranscription = (index: any, property: any, ev: any) => {
+        const newTranscription = [...transcription];
+        // @ts-ignore
+        newTranscription[index][property] = ev.target.value;
+        setTranscription(newTranscription)
+    }
     
 
     return ( 
@@ -93,33 +101,24 @@ const FilePage = (
                         </div>
                     </div>
                     {transcription.length > 0 && (
-                        transcription.map((item: any) =>(
-                            <TranscriptionItem 
-                                item={item}
-                                key={item.start_time}
-                            />
+                        transcription.map((item: any, key) =>(
+                            <>
+                                <TranscriptionItem 
+                                    item={item}
+                                    handleStartTimesChange={(ev) =>updateTranscription(key,'start_time',ev)}
+                                    handleEndTimesChange={(ev) =>updateTranscription(key,'end_time',ev)}
+                                    handleContentChange={(ev) =>updateTranscription(key,'content',ev)}
+                                />
+                            </>
                         ))
                     )}
                 </div>
                 <div>
                     <div className='sticky top-0'>
-                        <h2 className=' text-4xl font-semibold text-white/80 mb-3'> 
-                            Result:
-                        </h2>
-                        <div className='mb-3'>
-                            <Button  className='bg-red-800 hover:bg-red-600'>
-                                <Rocket size={24} className='mr-2'/>
-                                    Put Captions
-                                <RocketIcon size={24} className='ml-2'/>
-                            </Button>
-                        </div>
-                        <div>
-                            <video 
-                                src={"https://insta-transcribe.s3.eu-north-1.amazonaws.com/"+params.filename} 
-                                controls 
-                                className='h-[620px] rounded-xl overflow-hidden'
-                            />
-                        </div>
+                        <ResultColumn
+                            filename={params.filename}
+                            transcriptionItems = {transcription}
+                        />
                     </div>
                 </div>
             </div>

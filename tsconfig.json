@@ -23,6 +23,6 @@
       "@/*": ["./*"]
     }
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts", "app/api/upload/route.js", "app/api/transcribe/route.js"],
+  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts", "app/api/upload/route.js", "app/api/transcribe/route.js", "app/(routes)/(video-transcribe-page)/[filename]/page.tsx", "app/(routes)/(video-transcribe-page)/[filename]/_components/result-column.tsx", "lib/to-srt.js"],
   "exclude": ["node_modules"]
 }

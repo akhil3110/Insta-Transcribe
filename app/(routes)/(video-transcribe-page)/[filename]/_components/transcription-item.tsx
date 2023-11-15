@@ -1,40 +1,45 @@
-import { useState } from "react";
-
 interface TranscriptionItemProps{
     item: {
         start_time: string;
         end_time: string;
         content: string;
-        }
+        };
+    handleStartTimesChange: (ev: any) => void;
+    handleEndTimesChange: (ev: any) => void;
+    handleContentChange: (ev: any) => void;
 }
 
 const TranscriptionItem = ({
-   item
+    item,
+    handleStartTimesChange,
+    handleEndTimesChange,
+    handleContentChange
 }: TranscriptionItemProps ) => {
 
-    const [startSeconds,setStartSeconds] = useState(item.start_time);
-    const [endSeconds,setEndSeconds] = useState(item.end_time);
-    const [content,setContent] = useState(item.content);
+    if(!item){
+        return '';
+    }
+
 
     return ( 
         <div className="my-1 grid grid-cols-3 gap-1 items-center">
             <input 
                 type="text" 
                 className="bg-white/20 p-1 rounded-md border-b border-white/50 text-black"
-                value={startSeconds} 
-                onChange={e => setStartSeconds(e.target.value)} 
+                value={item.start_time} 
+                onChange={handleStartTimesChange} 
+            />
+           <input 
+                type="text" 
+                className="bg-white/20 p-1 rounded-md border-b border-white/50 text-black"
+                value={item.end_time} 
+                onChange={handleEndTimesChange} 
             />
             <input
                 type="text"
                 className="bg-white/20 p-1 rounded-md border-b border-white/50 text-black"
-                value={endSeconds} 
-                onChange={e => setEndSeconds(e.target.value)}
-            />
-            <input
-                type="text"
-                className="bg-white/20 p-1 rounded-md border-b border-white/50 text-black"
-                value={content} 
-                onChange={e => setContent(e.target.value)}
+                value={item.content} 
+                onChange={handleContentChange}
             />
         </div>
      );
