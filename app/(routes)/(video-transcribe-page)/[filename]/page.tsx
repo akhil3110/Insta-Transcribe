@@ -114,6 +114,9 @@ const FilePage = (
                     )}
                 </div>
                 <div>
+                    <h2 className=' text-4xl font-semibold text-white/80 mb-3'> 
+                        Result:
+                    </h2>
                     <div className='sticky top-0'>
                         <ResultColumn
                             filename={params.filename}
