@@ -39,7 +39,7 @@ const ResultColumn = ({
   
     const load = async () => {
       const ffmpeg = ffmpegRef.current;
-      const baseURL = 'https://unpkg.com/@ffmpeg/core@0.12.2/dist/umd'
+      const baseURL = 'https://unpkg.com/@ffmpeg/core@0.12.4/dist/umd'
       await ffmpeg.load({
         coreURL: await toBlobURL(`${baseURL}/ffmpeg-core.js`, 'text/javascript'),
         wasmURL: await toBlobURL(`${baseURL}/ffmpeg-core.wasm`, 'application/wasm'),
@@ -89,12 +89,12 @@ const ResultColumn = ({
     return (
       <>
         <div className="mb-4">
-          <button
+          <Button
             onClick={transcode}
             className="bg-red-600 hover:bg-red-900 py-2 px-6 rounded-full inline-flex gap-2 border-2 border-purple-700/50 cursor-pointer">
             <Rocket />
             <span>Apply captions</span>
-          </button>
+          </Button>
         </div>
         <div>
           <div className="flex">
@@ -124,7 +124,7 @@ const ResultColumn = ({
         </div>
         <div className="rounded-xl overflow-hidden relative">
           {progress && progress < 1 && (
-            <div className="absolute inset-0 bg-black/80 flex items-center">
+            <div className="absolute inset-0 bg-black/80 flex items-center w-[410px]">
               <div className="w-full text-center">
                 <div className="bg-bg-gradient-from/50 mx-8 rounded-lg overflow-hidden relative">
                   <div className="bg-bg-gradient-from h-8"
@@ -137,6 +137,7 @@ const ResultColumn = ({
               </div>
             </div>
           )}
+          
           <video
             data-video={0}
             ref={videoRef}
