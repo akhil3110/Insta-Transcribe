@@ -11,7 +11,8 @@ A website where you can upload vertical format video (Shorts or Reels) and add s
 
 
 # Working of Project
-![insta-transcribe-workflow](https://github.com/akhil3110/Insta-Transcribe/assets/78949515/382b8989-d7a1-4904-a13e-63a87f36769d)
+![insta-transcribe-workflow](https://github.com/akhil3110/Insta-Transcribe/assets/78949515/5040ace8-7eca-410b-85a0-5131326707bc)
+
 
 ***
 * User Can upload a video file.
