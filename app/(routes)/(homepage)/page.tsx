@@ -1,6 +1,7 @@
 import PageHeaders from '@/components/page-headers';
 import VideoSection from './_components/video-section';
 import UploadButton from './_components/upload-button';
+import Banner from '@/components/banner';
 
 
 export default function Home() {

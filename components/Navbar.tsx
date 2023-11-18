@@ -3,6 +3,7 @@ import Link from "next/link";
 
 import {
   Sheet,
+  SheetClose,
   SheetContent,
   SheetDescription,
   SheetHeader,
@@ -10,8 +11,8 @@ import {
   SheetTrigger,
 } from "@/components/ui/sheet"
 import { Menu, Sidebar } from "lucide-react";
-import SideBarr from "./sidebar";
-import SideBar from "./sidebar";
+import SideBarr from "../app/(routes)/_components/sidebar";
+import SideBar from "../app/(routes)/_components/sidebar";
 
 const sheetContent = [
   {
@@ -31,20 +32,20 @@ const sheetContent = [
 
 const Navbar = () => {
     return (
-        <div>
+        <div className="sticky top-2">
           <header className="flex justify-between my-4">
           <Link href="/" className=" font-extrabold sm:text-lg md:text-xl flex gap-x-2">
             <Image src="/logo.svg" width="30" height="30" alt="logo"/>
              Insta Transcribe
           </Link>
-          <div className="hidden md:block">
+          <div className="hidden lg:block">
             <nav className="gap-10 text-white/80 flex">
               <Link href="/" className="hover:text-white">Home</Link>
               <Link href="/pricing" className="hover:text-white">Pricing</Link>
               <a href="mailto:akhil1659@gmail.com" className="hover:text-white">Contact</a>
             </nav>
           </div>
-          <div className="md:hidden">
+          <div className="lg:hidden">
             <Sheet>
               <SheetTrigger>
                 <Menu />
@@ -55,9 +56,11 @@ const Navbar = () => {
                     Menu
                   </SheetTitle>
                 </SheetHeader>
-                <SideBar
-                  data={sheetContent}
-                />
+                  <SheetClose asChild>
+                    <SideBar
+                      data={sheetContent}
+                    />
+                  </SheetClose>
               </SheetContent>
           </Sheet>
           </div>

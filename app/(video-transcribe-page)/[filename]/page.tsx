@@ -6,10 +6,21 @@ import TranscriptionItem from './_components/transcription-item';
 import { Button } from '@/components/ui/button';
 import { Rocket, RocketIcon } from 'lucide-react';
 import ResultColumn from './_components/result-column';
+import { isFilePresent } from '@/lib/isFilePresent';
+import { redirect, useRouter } from 'next/navigation';
+
 
 const FilePage = (
     {params}: {params: {filename: string}}
 ) => {
+
+    // const isPresent = isFilePresent(params.filename);
+    // const router = useRouter();
+
+    // if(!isPresent){
+    //     console.log(isPresent, "adadada")
+    //     router.push('/');
+    // }
 
     const [isTranscribing, setIsTranscribing] = useState(false);
     const [transcription, setTranscription] = useState([]);
@@ -56,7 +67,7 @@ const FilePage = (
 
     if(isTranscribing){
         return (
-            <div className=' bg-black/90 text-white fixed  inset-0  flex items-center'>
+            <div className=' bg-black/70 text-white fixed  inset-0  flex items-center'>
                 <div className='w-full text-center'>
                     Transcribing Video...
                 </div>
@@ -66,7 +77,7 @@ const FilePage = (
 
     if(isFetchingInfo){
         return (
-            <div className=' bg-black/90 text-white fixed  inset-0  flex items-center'>
+            <div className=' bg-black/70 text-white fixed  inset-0  flex items-center'>
                 <div className='w-full text-center'>
                     Fetching info...
                 </div>
@@ -84,12 +95,12 @@ const FilePage = (
 
     return ( 
         <div>
-            <div className='grid grid-cols-2 gap-16'>
-                <div>
+            <div className='grid md:grid-cols-2 gap-8 md:gap-16'>
+                <div >
                     <h2 className=' text-4xl font-semibold text-white/80 mb-5'> 
                         Transcription:
                     </h2>
-                    <div className='grid grid-cols-3 text-center sticky top-0 '>
+                    <div className='grid grid-cols-3 text-center sticky top-0'>
                         <div className='p-1 mr-1 rounded-md border-b border-white/50  bg-violet-500'>
                             Start
                         </div>
@@ -100,24 +111,26 @@ const FilePage = (
                             Content
                         </div>
                     </div>
-                    {transcription.length > 0 && (
-                        transcription.map((item: any, key) =>(
-                            <>
-                                <TranscriptionItem 
-                                    item={item}
-                                    handleStartTimesChange={(ev) =>updateTranscription(key,'start_time',ev)}
-                                    handleEndTimesChange={(ev) =>updateTranscription(key,'end_time',ev)}
-                                    handleContentChange={(ev) =>updateTranscription(key,'content',ev)}
-                                />
-                            </>
-                        ))
-                    )}
+                    <div className='h-72 overflow-auto md:h-auto scroll-bar-width'>
+                        {transcription.length > 0 && (
+                            transcription.map((item: any, key) =>(
+                                <>
+                                    <TranscriptionItem 
+                                        item={item}
+                                        handleStartTimesChange={(ev) =>updateTranscription(key,'start_time',ev)}
+                                        handleEndTimesChange={(ev) =>updateTranscription(key,'end_time',ev)}
+                                        handleContentChange={(ev) =>updateTranscription(key,'content',ev)}
+                                    />
+                                </>
+                            ))
+                        )}
+                    </div>
                 </div>
                 <div>
                     <h2 className=' text-4xl font-semibold text-white/80 mb-3'> 
                         Result:
                     </h2>
-                    <div className='sticky top-0'>
+                    <div className='sticky top-7'>
                         <ResultColumn
                             filename={params.filename}
                             transcriptionItems = {transcription}

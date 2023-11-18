@@ -1,9 +1,42 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# insta-transcribe
+A website where you can upload vertical format video (Shorts or Reels) and add subtitles to it.
+
+## About the Project:
+* Developed a Next.js application enabling users to seamlessly upload vertical videos (Instagram Reels or YouTube Shorts) to an    AWS S3 bucket, integrating AWS Transcribe for automatic transcription.
+* Implemented a robust AWS S3 storage solution to efficiently store both the original videos and their corresponding Transcribe-generated transcription files, facilitating easy retrieval and management.
+* Utilized ffmpeg wasm to dynamically add captions derived from the transcription files to the original videos, enhancing accessibility and user engagement.
+* Enabled users to edit captions and timestamps directly within the application, providing a user-friendly interface for customization and improving overall user experience.
+* Incorporated advanced features allowing users to customize caption text color, offering a personalized touch to the videos and enhancing visual appeal.
+
+
+***
+# Working of Project
+
+***
+* User Can upload a video file.
+* This video will be uploaded to AWS S3 bucket and return the link of video.
+* Link of this video will be provided to AWS Transcribe service and the .transcribe file will be uploaded to same bucket.
+* Now this data of this file will be read and converted to SRT format.
+* User can also edit and design the time stamps and subtitles if we want.
+* With use of FFMPEG WASM we will add this SRT format subtitles in to video.
+* Now user can download the video with subtitles.
 
 ## Getting Started
 
-First, run the development server:
+Install all dependencies required for the project:
+```bash
+npm i
+```
 
+Now set up .env file 
+```bash
+cp .env.sample .env
+```
+
+Add all you the requires keys in .env file 
+
+
+Now project set up is completed now you can run the project
 ```bash
 npm run dev
 # or
@@ -14,23 +47,11 @@ pnpm dev
 bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
-
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
-
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
-
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+## Technologies Used
+A list of technologies used within the project:
+* Next.js
+* Shacdcn (Frontend Component Library)
+* Tailwind CSS
+* AWS S3 SDK
+* AWS Transcribe SDK
+* FFMPEG WASM

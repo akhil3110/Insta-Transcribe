@@ -6,9 +6,11 @@ import { fetchFile,toBlobURL } from '@ffmpeg/util';
 import { useEffect, useRef, useState } from "react";
 import { ToSrt } from "@/lib/to-srt.js";
 // @ts-ignore
-import roboto from '@/app/(routes)/(video-transcribe-page)/[filename]/_fonts/Roboto-Regular.ttf';
+import roboto from '@/app/(video-transcribe-page)/[filename]/_fonts/Roboto-Regular.ttf';
 // @ts-ignore
-import robotoBold from '@/app/(routes)/(video-transcribe-page)/[filename]/_fonts/Roboto-Bold.ttf'
+import robotoBold from '@/app/(video-transcribe-page)/[filename]/_fonts/Roboto-Bold.ttf'
+import toast from "react-hot-toast";
+import { useRouter } from "next/navigation";
 
 interface ResultColumnProps {
     filename: string;
@@ -30,6 +32,7 @@ const ResultColumn = ({
   const [progress, setProgress] = useState(1);
   const ffmpegRef = useRef(new FFmpeg());
   const videoRef = useRef(null);
+  const router = useRouter();
 
 
     useEffect(() => {
@@ -55,6 +58,7 @@ const ResultColumn = ({
     }
   
     const transcode = async () => {
+      router.refresh();
       const ffmpeg = ffmpegRef.current;
       const srt = ToSrt(transcriptionItems);
       await ffmpeg.writeFile(filename, await fetchFile(videoUrl));
@@ -77,15 +81,16 @@ const ResultColumn = ({
       await ffmpeg.exec([
         '-i', filename,
         '-preset', 'ultrafast',
-        '-vf', `subtitles=subs.srt:fontsdir=/tmp:force_style='Fontname=Roboto Bold,FontSize=30,MarginV=70,PrimaryColour=${toFFmpegColor(primaryColor)},OutlineColour=${toFFmpegColor(outlineColor)}'`,
+        '-vf', `subtitles=subs.srt:fontsdir=/tmp:force_style='Fontname=Roboto Bold,FontSize=30,MarginV=50,PrimaryColour=${toFFmpegColor(primaryColor)},OutlineColour=${toFFmpegColor(outlineColor)}'`,
         'output.mp4'
       ]);
       const data = await ffmpeg.readFile('output.mp4');
       videoRef.current.src =
         URL.createObjectURL(new Blob([data.buffer], {type: 'video/mp4'}));
-      setProgress(1);
+        setProgress(1);
+
     }
-  
+
     return (
       <>
         <div className="mb-4">
@@ -124,12 +129,12 @@ const ResultColumn = ({
         </div>
         <div className="rounded-xl overflow-hidden relative">
           {progress && progress < 1 && (
-            <div className="absolute inset-0 bg-black/80 flex items-center w-[410px]">
+            <div className="absolute inset-0 bg-black/80 flex items-center w-[340px] h-[580px]">
               <div className="w-full text-center">
                 <div className="bg-bg-gradient-from/50 mx-8 rounded-lg overflow-hidden relative">
                   <div className="bg-bg-gradient-from h-8"
                        style={{width:progress * 100+'%'}}>
-                    <h3 className="text-white text-xl absolute inset-0 py-1">
+                    <h3 className="text-white text-xl absolute mx-auto inset-0 py-1">
                       {parseInt(progress * 100)}%
                     </h3>
                   </div>
@@ -139,6 +144,7 @@ const ResultColumn = ({
           )}
           
           <video
+            className="w-[340px] h-[580px]"
             data-video={0}
             ref={videoRef}
             controls>

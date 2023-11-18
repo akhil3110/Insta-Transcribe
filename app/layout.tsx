@@ -4,6 +4,7 @@ import { Toaster } from 'react-hot-toast';
 import type { Metadata } from 'next'
 import { Inter } from 'next/font/google'
 import './globals.css'
+import { Rocket } from 'lucide-react';
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -11,7 +12,7 @@ export const metadata: Metadata = {
   title: 'Insta-Transcribe',
   description: 'Get captions for your Instagram & Youtube videos',
   icons:{
-    
+    icon: "/favicon.svg",
   }
 }
 
