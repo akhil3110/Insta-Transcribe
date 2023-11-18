@@ -11,7 +11,9 @@ A website where you can upload vertical format video (Shorts or Reels) and add s
 
 
 # Working of Project
+![insta-transcribe-workflow](https://github.com/akhil3110/Insta-Transcribe/assets/78949515/382b8989-d7a1-4904-a13e-63a87f36769d)
 
+***
 * User Can upload a video file.
 * This video will be uploaded to AWS S3 bucket and return the link of video.
 * Link of this video will be provided to AWS Transcribe service and the .transcribe file will be uploaded to same bucket.
