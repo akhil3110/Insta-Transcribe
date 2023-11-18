@@ -9,10 +9,9 @@ A website where you can upload vertical format video (Shorts or Reels) and add s
 * Incorporated advanced features allowing users to customize caption text color, offering a personalized touch to the videos and enhancing visual appeal.
 
 
-***
+
 # Working of Project
 
-***
 * User Can upload a video file.
 * This video will be uploaded to AWS S3 bucket and return the link of video.
 * Link of this video will be provided to AWS Transcribe service and the .transcribe file will be uploaded to same bucket.
