@@ -6,7 +6,7 @@ const VideoSection = () => {
             <div className="hidden sm:block bg-gray-800/50 w-[240px] rounded-xl overflow-hidden">
               <video src="/homepage_demo_video.mp4"  muted autoPlay loop></video>
             </div>
-          <div className='hidden md:block my-auto  mx-2 md:mx-0'>
+          <div className='hidden sm:block my-auto  mx-2 md:mx-0'>
             <Rocket />
           </div>
           <div className="bg-gray-800/50 w-[240px] rounded-xl overflow-hidden">
