@@ -31,8 +31,9 @@ const UploadForm = () => {
             
             toast.success("File Uploaded Successfully");
         } catch (error : any) {
-           console.log("UPLOAD FORM",error.message);
-           toast.error("Something went wrong"); 
+            router.push('/');
+            console.log("UPLOAD FORM",error.message);
+            toast.error("Something went wrong"); 
         }
     }
 

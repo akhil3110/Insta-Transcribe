@@ -35,16 +35,17 @@ const Banner = ({
 
     return ( 
         <div className={cn(bannerVariants({variant}))}>
-            <Icon className="h-4 w-4 mr-2"/>
             {label}
-            <a 
-                href="/demo_video.mp4"
-                download="demo_video.mp4"
-                target="_blank"
-                rel="noopener noreferrer"
-            >
-                <Download className="h-4 w-4 ml-2 text-sky-400 hover:text-sky-600 cursor-pointer"/>
-            </a>
+            <span>
+                <a 
+                    href="/demo_video.mp4"
+                    download="demo_video.mp4"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                >
+                    <Download className="h-5 w-5 ml-2 text-sky-400 hover:text-sky-600 cursor-pointer"/>
+                </a>
+            </span>
         </div>
      );
 }

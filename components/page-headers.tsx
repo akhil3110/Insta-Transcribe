@@ -10,7 +10,7 @@ const PageHeaders = (
   }: PageHeadersProps
 ) => {
     return ( 
-        <div className="text-center mt-5">
+        <div className="text-center mt-4">
           <h1 className="text-4xl font-medium">
             {h1Text}
           </h1>
